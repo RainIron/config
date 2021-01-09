@@ -1,0 +1,2 @@
+# config
+Use  ArchLinux configuration
