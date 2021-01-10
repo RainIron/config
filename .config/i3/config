@@ -37,6 +37,41 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# ====================================== Custom Settings Start ==============================================
+
+# Custom Activate #
+
+# set wallpaper
+exec_always --no-startup-id feh --randomize --bg-fill  ~/.config/wallpaper/your.jpeg
+
+# set picom
+exec --no-startup-id picom -CGb --config ~/.config/picom/picom.conf
+
+# cover and automatic locker
+exec --no-startup-id light-locker
+
+
+# Custom Bindsym #
+
+# rofi
+bindsym $mod+r exec --no-startup-id rofi -show run
+
+# nautilus
+bindsym $mod+e exec --no-startup-id  nautilus
+
+# split screen
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout toggle split
+
+# screen lock
+bindsym $mod+l exec --no-startup-id light-locker
+
+# screenshots
+bindsym Print exec --no-startup-id flameshot full
+bindsym $mod+Print --release exec --no-startup-id flameshot gui
+
+# ====================================== Custom Settings END ================================================
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -57,7 +92,7 @@ bindsym $mod+Shift+q kill
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
+# bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -88,9 +123,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -103,9 +138,6 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-# rofi
-bindsym $mod+d exec --no-startup-id rofi -show run
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -176,9 +208,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
-exec_always --no-startup-id feh --randomize --bg-fill  ~/.config/wallpaper/your.jpeg
+# bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
