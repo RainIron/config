@@ -50,6 +50,9 @@ exec --no-startup-id picom -CGb --config ~/.config/picom/picom.conf
 # cover and automatic locker
 exec --no-startup-id light-locker
 
+# Automatic black screen
+exec --no-startup-id xset dpms 600
+
 
 # Custom Bindsym #
 
@@ -67,8 +70,19 @@ bindsym $mod+s layout toggle split
 bindsym $mod+l exec --no-startup-id light-locker
 
 # screenshots
-bindsym Print exec --no-startup-id flameshot full
-bindsym $mod+Print --release exec --no-startup-id flameshot gui
+bindsym Print --release exec --no-startup-id flameshot gui
+
+
+# hidden or show i3bar
+bindsym $mod+m bar mode toggle
+
+# 
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+# bindsym Mod4+Shift+minus mark "scratchpad_minus", move scratchpad
+# bindsym Mod4+minus [con_mark="scratchpad_minus"] scratchpad show
+# bindsym Mod4+Shift+plus mark "scratchpad_plus", move scratchpad
+# bindsym Mod4+plus [con_mark="scratchpad_plus"] scratchpad show
 
 # ====================================== Custom Settings END ================================================
 
@@ -213,5 +227,20 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command    conky -c ~/.config/conkyrc
+    position          bottom
+    mode              hide
+    modifier          $mod
+    font pango:monospace 8, FontAwesome 8
+    strip_workspace_numbers yes
+
+    colors {
+        background #000000
+        statusline #ffffff
+        # 工作区颜色         边框    背景     文字
+        focused_workspace  #FF0000 #FF0000 #000000
+        active_workspace   #888888 #888888 #00FF00
+        inactive_workspace #222222 #222222 #00FFFF
+        urgent_workspace   #000000 #000000 #FF0000
+    }
 }
